@@ -15,26 +15,39 @@ public class Block implements Locatable {
     private Color color;
 
     public Block() {
-
+        setPos(100,150);
+        width = 10;
+        height = 10;
     }
 
-   //add other Block constructors - x , y , width, height, color
+    //add other Block constructors - x , y , width, height, color
+    public Block(int x, int y) {
+        xPos = x;
+        yPos = y;
+    }
     
-    public Block (int x, int y, int w, int h){
+    
+    public Block(int x, int y, int w, int h) {
         xPos = x;
         yPos = y;
         width = w;
         height = h;
     }
     
-    public Block (int x, int y, int w, int h, Color c){
+    public Block(int x, int y, int w, int h, Color c) {
         xPos = x;
         yPos = y;
         width = w;
         height = h;
         color = c;
     }
-   //add the other set methods
+
+    //add the other set methods
+    public void setPos(int x, int y) {
+        setxPos(x);
+        setyPos(y);
+    }
+
     /**
      * @return the xPos
      */
@@ -97,50 +110,49 @@ public class Block implements Locatable {
     public Color getColor() {
         return color;
     }
-    
-    public void setColor(Color col) {
 
-    }
-    
-    public void setPos(int x, int y){
-        setxPos(x);
-        setyPos(y);
+    public void setColor(Color col) {
+        color = col;
     }
 
     public void draw(Graphics window) {
-   	//uncomment after you write the set and get methods
         window.setColor(color);
         window.fillRect(getxPos(), getyPos(), getWidth(), getHeight());
     }
 
     public void draw(Graphics window, Color col) {
-
+        window.setColor(col);
+        window.fillRect(getxPos(), getyPos(), getWidth(), getHeight());
     }
 
     public boolean equals(Object obj) {
-        Block test = (Block)obj;
-        /*if (!this.getColor().equals(null) && !test.getColor().equals(null)){
-            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos() && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight() && this.getColor().equals(test.getColor())){
-            
+
+        Block test = (Block) obj;
+
+        if (this.getColor() != null && test.getColor() != null) {
+
+            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos()
+                    && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight()
+                    && this.getColor().equals(test.getColor())) {
+
+                return true;
+
+            }
+        } else {
+            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos()
+                    && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight()) {
+
                 return true;
             }
         }
-        
-        else{*/
-            if (this.getxPos() == test.getxPos() && this.getyPos() == test.getyPos() && this.getWidth() == test.getWidth() && this.getHeight() == test.getHeight()){
-            
-                return true;
-            }
-        //}
-        
+
         return false;
     }
 
-   //add the other get methods
-   //add a toString() method  - x , y , width, height, color
-    public String toString(){
+    //add the other get methods
+    //add a toString() method  - x , y , width, height, color
+    public String toString() {
         return getxPos() + " " + getyPos() + " " + getWidth() + " " + getHeight() + " " + color;
     }
-    
 
 }

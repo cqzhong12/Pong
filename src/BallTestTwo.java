@@ -30,12 +30,12 @@ class BallTestTwo extends Canvas implements Runnable {
     public void paint(Graphics window) {
         ball.moveAndDraw(window);
 
-        if (!(ball.getX() >= 10 && ball.getX() <= 550)) {
-            ball.setXSpeed(-ball.getXSpeed());
+        if (!(ball.getxPos() >= 10 && ball.getxPos() <= 550)) {
+            ball.setxSpeed(-ball.getxSpeed());
         }
 
-        if (!(ball.getY() >= 10 && ball.getY() <= 450)) {
-            ball.setYSpeed(-ball.getYSpeed());
+        if (!(ball.getyPos() >= 10 && ball.getyPos() <= 450)) {
+            ball.setySpeed(-ball.getySpeed());
         }
     }
 
