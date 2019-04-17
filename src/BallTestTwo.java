@@ -18,6 +18,7 @@ class BallTestTwo extends Canvas implements Runnable {
         setVisible(true);
 
 		//instantiate a new Ball
+        ball = new Ball(100, 300, 50, 60, Color.PINK, 5, 6 );
 		//test the Ball thoroughly
 		//test all constructors
         new Thread(this).start();
@@ -30,11 +31,11 @@ class BallTestTwo extends Canvas implements Runnable {
     public void paint(Graphics window) {
         ball.moveAndDraw(window);
 
-        if (!(ball.getxPos() >= 10 && ball.getxPos() <= 550)) {
+        if (!(ball.getxPos() >= 10 && ball.getxPos() <= getWidth()-ball.getWidth())) {
             ball.setxSpeed(-ball.getxSpeed());
         }
 
-        if (!(ball.getyPos() >= 10 && ball.getyPos() <= 450)) {
+        if (!(ball.getyPos() >= 10 && ball.getyPos() <= getHeight() - ball.getHeight())) {
             ball.setySpeed(-ball.getySpeed());
         }
     }

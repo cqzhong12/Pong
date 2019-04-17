@@ -34,18 +34,18 @@ public class Ball extends Block {
         ySpeed = ySp;
     }
 
-	//add the other Ball constructors
+    //add the other Ball constructors
     //add the set methods
     public void moveAndDraw(Graphics window) {
         //draw a white ball at old ball location
-        
-        draw(window,Color.white);
+
+        draw(window, Color.white);
         setxPos(getxPos() + getxSpeed());
 		//setY
-
+        setyPos(getyPos() + getySpeed());
         //draw the ball at its new location
         draw(window);
-    
+
     }
 
     public boolean equals(Object obj) {
@@ -55,7 +55,7 @@ public class Ball extends Block {
                 && this.getySpeed() == test.getySpeed();
     }
 
-   //add the get methods
+    //add the get methods
     /**
      * @return the xSpeed
      */
@@ -83,6 +83,6 @@ public class Ball extends Block {
     public void setySpeed(int ySpeed) {
         this.ySpeed = ySpeed;
 
-   //add a toString() method
+        //add a toString() method
     }
 }
