@@ -5,7 +5,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block {
+public class Ball extends Block{
 
     private int xSpeed;
     private int ySpeed;
@@ -54,6 +54,7 @@ public class Ball extends Block {
                 && this.getxSpeed() == test.getxSpeed()
                 && this.getySpeed() == test.getySpeed();
     }
+    
 
     //add the get methods
     /**
@@ -82,7 +83,7 @@ public class Ball extends Block {
      */
     public void setySpeed(int ySpeed) {
         this.ySpeed = ySpeed;
-
-        //add a toString() method
     }
+    
+    //add a toString() method
 }

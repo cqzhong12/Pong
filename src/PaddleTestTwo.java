@@ -13,122 +13,114 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 
-public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
-{
-	private Ball ball;
-	private Paddle leftPaddle;
-	private boolean[] keys;		//keeps track of what keys are pressed
+public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
 
-	public PaddleTestTwo()
-	{
+    private Ball ball;
+    private Paddle leftPaddle;
+    private Paddle rightPaddle;
+    private boolean[] keys;		//keeps track of what keys are pressed
+
+    public PaddleTestTwo() {
 		//set up all game variables
 
+        //instantiate a Ball
+        ball = new Ball(200, 250, 15, 15, Color.LIGHT_GRAY, 5, 5);
 
-		//instantiate a Ball
-		
-		
-		
-		//instantiate a left Paddle
-		
-		//paddle = newPaddle ()
-		
-		
-		//instantiate a right Paddle
-		
-		
-		
+        //instantiate a left Paddle
+        leftPaddle = new Paddle(100, 250, 20, 80, Color.RED, 10);
 
+        //instantiate a right Paddle
+        rightPaddle = new Paddle(600, 250, 20, 80, Color.RED, 10);
 
-		keys = new boolean[5];
+        keys = new boolean[5];
 
+        //set up the Canvas
+        setBackground(Color.WHITE);
+        setVisible(true);
 
-		//set up the Canvas
-		setBackground(Color.WHITE);
-		setVisible(true);
+        this.addKeyListener(this);
+        new Thread(this).start();
+    }
 
-		this.addKeyListener(this);
-		new Thread(this).start();
-	}
-	
-	public void update(Graphics window)
-	{
-		paint(window);
-	}
+    public void update(Graphics window) {
+        paint(window);
+    }
 
-	public void paint(Graphics window)
-	{
-		ball.moveAndDraw(window);
-		leftPaddle.draw(window);
+    public void paint(Graphics window) {
+        ball.moveAndDraw(window);
+        leftPaddle.draw(window);
+        rightPaddle.draw(window);
 
-		if(!(ball.getxPos()>=10 && ball.getxPos()<=550))
-		{
-			ball.setxSpeed(-ball.getxSpeed());
-		}
+        if (!(ball.getxPos() >= 10 && ball.getxPos() <= getWidth() - ball.getWidth())) {
+            ball.setxSpeed(-ball.getxSpeed());
+        }
 
-		if(!(ball.getyPos()>=10 && ball.getyPos()<=450))
-		{
-			ball.setySpeed(-ball.getySpeed());
-		}
+        if (!(ball.getyPos() >= 10 && ball.getyPos() <= getHeight() - ball.getHeight())) {
+            ball.setySpeed(-ball.getySpeed());
+        }
 
-		if(keys[0] == true)
-		{
-			//move left paddle up and draw it on the window
-			leftPaddle.moveUpAndDraw(window);
-		}
-		if(keys[1] == true)
-		{
-			//move left paddle down and draw it on the window
+        if (keys[0] == true) {
+            //move left paddle up and draw it on the window
+            leftPaddle.moveUpAndDraw(window);
+        }
+        if (keys[1] == true) {
+            //move left paddle down and draw it on the window
+            leftPaddle.moveDownAndDraw(window);
 
+        }
+        if (keys[2] == true) {
+            rightPaddle.moveUpAndDraw(window);
+        }
+        if (keys[3] == true) {
+            rightPaddle.moveDownAndDraw(window);
+        }
+    }
 
-		}
-		if(keys[2] == true)
-		{
+    public void keyPressed(KeyEvent e) {
+        switch (toUpperCase(e.getKeyChar())) {
+            case 'W':
+                keys[0] = true;
+                break;
+            case 'Z':
+                keys[1] = true;
+                break;
+            case 'I':
+                keys[2] = true;
+                break;
+            case 'M':
+                keys[3] = true;
+                break;
+        }
+    }
 
-		}
-		if(keys[3] == true)
-		{
+    public void keyReleased(KeyEvent e) {
+        switch (toUpperCase(e.getKeyChar())) {
+            case 'W':
+                keys[0] = false;
+                break;
+            case 'Z':
+                keys[1] = false;
+                break;
+            case 'I':
+                keys[2] = false;
+                break;
+            case 'M':
+                keys[3] = false;
+                break;
+        }
+    }
 
-		}
-	}
+    public void keyTyped(KeyEvent e) {
+        //no code needed here
+    }
 
-	public void keyPressed(KeyEvent e)
-	{
-		switch(toUpperCase(e.getKeyChar()))
-		{
-			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
-		}
-	}
-
-	public void keyReleased(KeyEvent e)
-	{
-		switch(toUpperCase(e.getKeyChar()))
-		{
-			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
-		}
-	}
-
-	public void keyTyped(KeyEvent e)
-	{
-		//no code needed here
-	}
-	
-   public void run()
-   {
-   	try
-   	{
-   		while(true)
-   		{
-   		   Thread.currentThread().sleep(8);
-            repaint();
-         }
-      }catch(Exception e)
-      {
-      }
-  	}		
+    public void run() {
+        try {
+            while (true) {
+                Thread.currentThread().sleep(8);
+                repaint();
+            }
+        } catch (Exception e) {
+        }
+    }
 }
