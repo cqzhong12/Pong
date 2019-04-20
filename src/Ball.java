@@ -34,6 +34,52 @@ public class Ball extends Block{
         ySpeed = ySp;
     }
 
+//  //a
+    boolean didCollideLeft(Object obj){
+        Block bl = (Block) obj;
+        if(this.getY()>=bl.getY()&&this.getY()<=bl.getHeight()||this.getY()+this.getHeight()<=bl.getY()+bl.getHeight()&&this.getY()+this.getHeight()>=bl.getY()){
+            if(this.getX() + this.getWidth() == bl.getX() + Math.abs(this.xSpeed)){
+                return true;
+            }
+        }
+        return false;  
+       
+    }
+    boolean didCollideRight(Object obj){
+        Block bl = (Block) obj;
+        if(this.getY()>=bl.getY()&&this.getY()<=bl.getHeight()||this.getY()+this.getHeight()<=bl.getY()+bl.getHeight()&&this.getY()+this.getHeight()>=bl.getY()){
+            if(this.getX() == bl.getX() + bl.getWidth()+ Math.abs(this.xSpeed)){
+                return true;
+            }
+        }
+        return false;  
+       
+    }
+    boolean didCollideBottom(Object obj){
+        Block bl = (Block) obj;
+        if(this.getX()>=bl.getX()&&this.getX()<=bl.getWidth()||this.getX()+this.getWidth()<=bl.getX()+bl.getWidth()&&this.getX()+this.getWidth()>=bl.getX()){
+            
+            if(this.getY() == bl.getY() + bl.getHeight()+ Math.abs(this.ySpeed)){
+                return true;
+            }
+            
+        }
+        return false;  
+       
+    }
+    boolean didCollideTop(Object obj){
+        Block bl = (Block) obj;
+        if(this.getX()>=bl.getX()&&this.getX()<=bl.getWidth()||this.getX()+this.getWidth()<=bl.getX()+bl.getWidth()&&this.getX()+this.getWidth()>=bl.getX()){
+            
+            if(this.getY() + this.getHeight() == bl.getY() + Math.abs(this.ySpeed)){
+                return true;
+            }
+            
+        }
+        return false;  
+       
+    }//aend collide 
+
     //add the other Ball constructors
     //add the set methods
     public void moveAndDraw(Graphics window) {
