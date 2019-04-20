@@ -51,6 +51,12 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
         leftPaddle.draw(window);
         rightPaddle.draw(window);
 
+
+        if((ball.getxPos()<= leftPaddle.getxPos() + leftPaddle.getWidth() + Math.abs(ball.getxSpeed()))&&(ball.getyPos()+ball.getHeight()>=leftPaddle.getyPos()&&ball.getyPos()+ball.getHeight()<=leftPaddle.getyPos()+leftPaddle.getHeight()||ball.getyPos()<=leftPaddle.getyPos()+leftPaddle.getHeight()&&ball.getyPos() >=leftPaddle.getyPos())){
+            ball.setySpeed(-ball.getySpeed());
+            ball.setxSpeed(-ball.getxSpeed());
+        }//a
+
         if (!(ball.getxPos() >= 10 && ball.getxPos() <= getWidth() - ball.getWidth())) {
             ball.setxSpeed(-ball.getxSpeed());
         }
